@@ -1,7 +1,7 @@
 import { PersonService } from './person.service';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { IPerson } from "./person.model";
+import { IPerson } from './person.model';
 
 @Injectable()
 export class PersonResolver implements Resolve<IPerson> {

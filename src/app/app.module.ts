@@ -9,9 +9,9 @@ import { RouterModule } from '@angular/router';
 import { McBreadcrumbsModule, McBreadcrumbsConfig } from 'ngx-breadcrumbs';
 
 import { AboutComponent } from './components/about.component';
-import { HomeComponent } from "./components/home.component";
+import { HomeComponent } from './components/home.component';
 import { AppComponent } from './app.component';
-import { BrowseComponent } from "./browse/browse.component";
+import { BrowseComponent } from './browse/browse.component';
 import { BrowseService } from './browse/browse.service';
 import { BrowseBreadcrumbsResolver } from './browse/browse-breadcrumbs.resolver';
 
@@ -39,7 +39,7 @@ export class AppModule {
 
       let y = x;
 
-      if(x.length && x[0].text !== 'Home') {
+      if (x.length && x[0].text !== 'Home') {
         y = [
           {
             text: 'Home',

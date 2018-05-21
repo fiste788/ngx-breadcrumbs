@@ -1,12 +1,11 @@
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IPerson } from './person.model';
 import { Injectable } from '@angular/core';
-import { utils } from "../shared/utils";
+import { utils } from '../shared/utils';
+import { map, first } from 'rxjs/operators';
 
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class PersonService {
@@ -19,26 +18,26 @@ export class PersonService {
   }
 
   get(id: string): Promise<IPerson> {
-    return this.persons
-      .map(x => x.find(y => y.id === id))
-      .first()
-      .toPromise();
+    return this.persons.pipe(
+      map(x => x.find(y => y.id === id)),
+      first()
+    ).toPromise();
   }
 
-  save(person: IPerson) : Promise<IPerson> {
+  save(person: IPerson): Promise<IPerson> {
 
     return new Promise((resolve) => {
-      let persons = [... this.persons.getValue()];
+      const personList = [... this.persons.getValue()];
 
       if (!person.id) {
         person.id = utils.guid();
-        persons.push(person);
+        personList.push(person);
       } else {
-        let idx = persons.findIndex((x) => x.id === person.id);
-        persons.splice(idx, 1, person);
+        const idx = personList.findIndex((x) => x.id === person.id);
+        personList.splice(idx, 1, person);
       }
 
-      this.persons.next(persons);
+      this.persons.next(personList);
 
       resolve(person);
     });

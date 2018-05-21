@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { utils } from "../shared/utils";
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
+import { BehaviorSubject, Observable, Observer } from 'rxjs';
+import { map, expand, takeWhile, toArray } from 'rxjs/operators';
+import { utils } from '../shared/utils';
 
-import 'rxjs/add/operator/expand';
-import 'rxjs/add/operator/takeWhile';
+
+
 
 @Injectable()
 export class BrowseService {
@@ -17,28 +16,33 @@ export class BrowseService {
   }
 
   get(id: string): Observable<IFolder> {
-    return this.folders.map(x => x.find(y => y.id === id));
+    return this.folders.pipe(
+      map(x => x.find(y => y.id === id))
+    );
   }
 
   getChilds(parentId: string): Observable<IFolder[]> {
-    return this.folders.map((x) => {
-      return x.filter((y) => y.parentId === parentId);
-    });
+    return this.folders.pipe(
+      map((x) => {
+        return x.filter((y) => y.parentId === parentId);
+      })
+    );
   }
 
   getPath(leafId: string): Observable<IFolder[]> {
-    return this.get(leafId)
-      .expand(x => this.get(x.parentId))
-      .takeWhile(x => !!x)
-      .toArray()
-      .map(x => x.reverse());
+    return this.get(leafId).pipe(
+      expand(x => this.get(x.parentId)),
+      takeWhile(x => !!x),
+      toArray(),
+      map(x => x.reverse())
+    );
   }
 }
 
 export interface IFolder {
-  id: string,
-  parentId: string,
-  name: string
+  id: string;
+  parentId: string;
+  name: string;
 }
 
 const folders: Array<IFolder> = [];
@@ -50,7 +54,7 @@ const levels = 3;
 function createFolders(parentId: string, level: number) {
   let count = utils.randomInt(minChilds, maxChilds);
   while (count--) {
-    let id = utils.guid();
+    const id = utils.guid();
     folders.push({
       id: id,
       parentId: parentId,

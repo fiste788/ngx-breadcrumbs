@@ -1,5 +1,5 @@
-import { BrowseComponent } from "./browse.component";
-import { BrowseBreadcrumbsResolver } from "./browse-breadcrumbs.resolver";
+import { BrowseComponent } from './browse.component';
+import { BrowseBreadcrumbsResolver } from './browse-breadcrumbs.resolver';
 
 const browseRoutes = [
   {
@@ -15,4 +15,4 @@ const browseRoutes = [
   }
 ];
 
-export { browseRoutes }
+export { browseRoutes };

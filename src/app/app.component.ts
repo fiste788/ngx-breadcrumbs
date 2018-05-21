@@ -3,9 +3,9 @@ import { Route, Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 export interface INavLink {
-  text: string,
-  path: string,
-  exact: boolean
+  text: string;
+  path: string;
+  exact: boolean;
 }
 
 @Component({
@@ -62,9 +62,9 @@ export class AppComponent {
       })));
 
     routes.forEach((x) => {
-      if(x.children) {
+      if (x.children) {
         this.getNavLinks(x.children);
       }
-    })
+    });
   }
 }
