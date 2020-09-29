@@ -1,4 +1,3 @@
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IPerson } from './person.model';
 import { Injectable } from '@angular/core';

@@ -1,4 +1,4 @@
-import { Observable ,  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { McBreadcrumbsService } from '../service/mc-breadcrumbs.service';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -9,7 +9,7 @@ import { IBreadcrumb } from '../mc-breadcrumbs.shared';
   templateUrl: './mc-breadcrumbs.component.html'
 })
 export class McBreadcrumbsComponent implements OnInit, OnDestroy {
-  constructor(public service: McBreadcrumbsService) {}
+  constructor(public service: McBreadcrumbsService) { }
 
   crumbs: IBreadcrumb[];
 

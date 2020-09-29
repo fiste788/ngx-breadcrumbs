@@ -249,5 +249,9 @@
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": "2a810351-eccf-4a13-b96d-2a131486e900",
+    "packageManager": "yarn"
   }
 }

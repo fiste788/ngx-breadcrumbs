@@ -21,29 +21,18 @@ import { Observable, of, from } from 'rxjs';
 //   _templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 // }
 
-import * as template from 'lodash.template';
-import * as templateSettings from 'lodash.templatesettings';
-
-const _ = {
-  template: template,
-  templateSettings: templateSettings
-};
-
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-
 export interface IBreadcrumb {
   text: string;
   path: string;
 }
 
-declare var require: any;
-
-function r(module) {
-  return require(`${name}`);
+function makeTemplate(templateString: string) {
+  return (templateData: unknown) =>
+    new Function(`{${Object.keys(templateData).join(',')}}`, 'return `' + templateString + '`')(templateData);
 }
 
 export function stringFormat(_template: string, binding: any): string {
-  const compiled = _.template(_template);
+  const compiled = makeTemplate(_template);
   return compiled(binding);
 }
 

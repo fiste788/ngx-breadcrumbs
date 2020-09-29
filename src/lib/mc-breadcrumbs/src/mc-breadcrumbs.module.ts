@@ -11,7 +11,7 @@ import { McBreadcrumbsConfig } from './service/mc-breadcrumbs.config';
   exports: [ McBreadcrumbsComponent ]
 })
 export class McBreadcrumbsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<McBreadcrumbsModule> {
     return {
       ngModule: McBreadcrumbsModule,
       providers: [

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-yarn unlink ngx-breadcrumbs
+#yarn unlink ngx-breadcrumbs
 
 cd build/ngx-breadcrumbs
-yarn unlink
-yarn link
+#yarn unlink
+npm link
 cd ../..
 
-yarn link ngx-breadcrumbs
+npm link ngx-breadcrumbs
 
 

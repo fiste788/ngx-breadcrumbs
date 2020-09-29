@@ -15,7 +15,7 @@ const routes: Routes = [
       person: PersonResolver
     },
     data: {
-      breadcrumbs: '{{ person.name }}'
+      breadcrumbs: '${person.name}'
     }
   }
 ];
