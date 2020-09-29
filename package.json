@@ -27,7 +27,8 @@
     "build:integration": "npm run build:pkg && npm run link:pkg && ng build --aot --project integration",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+	"prepare": "npm run build"
   },
   "private": true,
   "dependencies": {
